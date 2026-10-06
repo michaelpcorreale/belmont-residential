@@ -89,11 +89,6 @@ document.addEventListener('click', e => {
   history.pushState(null, '', id);
 });
 
-// ---------- Straight answers ----------
-document.querySelectorAll('button.q').forEach(q => {
-  q.addEventListener('click', () => q.setAttribute('aria-pressed', q.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'));
-});
-
 // ---------- Connect ----------
 const form = document.querySelector('.form');
 const intentField = form.querySelector('[name="intent"]');
