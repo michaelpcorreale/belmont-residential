@@ -19,7 +19,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+html { scroll-padding-top: 100px; }
 body {
   margin: 0; font-family: var(--sans); font-size: 17px; line-height: 1.55;
   color: var(--ink); background: var(--white);

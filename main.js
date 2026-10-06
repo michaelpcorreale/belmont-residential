@@ -56,6 +56,39 @@ toggle.addEventListener('click', () => {
 });
 menu.addEventListener('click', e => { if (e.target.tagName === 'A') closeMenu(); });
 
+// ---------- Smooth, eased scrolling for in-page links ----------
+const easeInOut = t => (t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+let scrollAnim;
+function glideTo(y) {
+  cancelAnimationFrame(scrollAnim);
+  const start = window.scrollY, dist = y - start;
+  const dur = Math.min(1400, Math.max(600, Math.abs(dist) * 0.35));
+  const t0 = performance.now();
+  const step = now => {
+    const p = Math.min(1, (now - t0) / dur);
+    window.scrollTo(0, start + dist * easeInOut(p));
+    if (p < 1) scrollAnim = requestAnimationFrame(step);
+  };
+  scrollAnim = requestAnimationFrame(step);
+}
+// Stop the glide if the visitor scrolls themselves.
+['wheel', 'touchstart', 'keydown'].forEach(ev => window.addEventListener(ev, () => cancelAnimationFrame(scrollAnim), { passive: true }));
+
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a || reduceMotion) return;
+  const id = a.getAttribute('href');
+  if (id === '#') return;
+  const target = id === '#top' ? document.body : document.querySelector(id);
+  if (!target) return;
+  e.preventDefault();
+  // Land just under the menu bar as it sits once scrolled (the blue banner collapses on scroll).
+  const pill = nav.querySelector('.nav-pill');
+  const offset = id === '#top' ? 0 : pill.offsetHeight + parseFloat(getComputedStyle(pill).marginTop);
+  glideTo(Math.max(0, target.getBoundingClientRect().top + window.scrollY - offset));
+  history.pushState(null, '', id);
+});
+
 // ---------- Straight answers ----------
 document.querySelectorAll('button.q').forEach(q => {
   q.addEventListener('click', () => q.setAttribute('aria-pressed', q.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'));
