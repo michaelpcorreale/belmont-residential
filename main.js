@@ -39,6 +39,17 @@ window.addEventListener('scroll', () => { nav.classList.toggle('compact', window
 window.addEventListener('resize', setNav);
 setNav();
 
+// Highlight the menu item for the section in view.
+const navLinks = [...document.querySelectorAll('.nav-links a')];
+const spy = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+  });
+}, { rootMargin: '-45% 0px -50% 0px' });
+navLinks.forEach(l => { const s = document.querySelector(l.getAttribute('href')); if (s) spy.observe(s); });
+spy.observe(document.getElementById('hero')); // clears the highlight at the top of the page
+
 const toggle = document.querySelector('.nav-toggle');
 const menu = document.getElementById('mobile-menu');
 const closeMenu = () => {
