@@ -26,6 +26,7 @@ body {
   -webkit-font-smoothing: antialiased; overflow-x: hidden; overflow-x: clip;
 }
 img, svg, video { display: block; max-width: 100%; }
+picture { display: contents; }
 a { color: inherit; }
 h1, h2, h3 { font-family: var(--display); font-weight: 500; margin: 0; letter-spacing: -0.035em; }
 p { margin: 0; }

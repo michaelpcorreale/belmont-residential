@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://michaelpcorreale.github.io/belmont-residential/sitemap.xml
