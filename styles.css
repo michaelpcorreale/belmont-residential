@@ -329,6 +329,7 @@ h3 { font-size: 21px; line-height: 1.2; letter-spacing: -0.02em; }
 .foot-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,.1), rgba(10,10,10,1)); }
 .foot-hero .wrap { position: relative; z-index: 1; }
 .tagline { font: 500 clamp(56px, 11vw, 184px)/.9 var(--display); letter-spacing: -0.055em; padding-bottom: .12em; }
+.tagline-sub { margin-top: 8px; font: 400 clamp(17px, 1.6vw, 22px)/1.4 var(--display); letter-spacing: -0.01em; color: rgba(255,255,255,.7); max-width: 40ch; }
 .foot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 96px); }
 .foot-line { font: 400 clamp(20px, 1.9vw, 26px)/1.35 var(--display); letter-spacing: -0.015em; color: rgba(255,255,255,.88); max-width: 32ch; }
 .foot-bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; margin-top: clamp(64px, 8vw, 104px); padding-top: 28px; border-top: 1px solid var(--line-dark); font-size: 14px; color: rgba(255,255,255,.55); }
