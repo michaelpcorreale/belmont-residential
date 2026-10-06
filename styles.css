@@ -184,7 +184,8 @@ h3 { font-size: 21px; line-height: 1.2; letter-spacing: -0.02em; }
 .meet-col.gain { background: var(--black); color: #fff; transform: translateX(60px); }
 .meet.in .meet-col { transform: none; opacity: 1; }
 .meet-tag { justify-self: start; margin-bottom: 18px; padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; background: var(--gray-50); color: var(--gray-600); }
-.gain .meet-tag { background: rgba(37,99,255,.18); color: #8fb0ff; }
+.meet-logo { justify-self: start; display: flex; align-items: center; height: 30px; margin-bottom: 18px; color: #fff; }
+.meet-logo .logo { height: 18px; width: auto; }
 .meet h3 { font-size: clamp(26px, 2.6vw, 36px); margin-bottom: 28px; }
 .meet ul { display: contents; list-style: none; }
 .meet li { display: grid; grid-template-columns: 44px 1fr; gap: 16px; align-items: start; padding: 18px 0; border-top: 1px solid var(--line); color: var(--gray-600); }
