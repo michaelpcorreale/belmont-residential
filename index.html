@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/video/hero-poster.jpg">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
 
@@ -271,18 +271,23 @@
 
 <!-- 10 — Connect -->
 <section class="sec sec-black connect" data-dark id="connect" aria-labelledby="connect-title">
-  <div class="wrap connect-grid">
-    <div class="reveal">
-      <p class="kicker light"><span class="idx">09</span>Connect</p>
-      <h2 id="connect-title">Interested in building this with us?</h2>
-      <p class="lede">Thirty minutes. Confidential. No data room, no broker, no pressure.</p>
-      <div class="btns">
-        <a href="#" class="btn btn-blue" data-book>Book a call</a>
-        <a href="#" class="btn btn-outline-light" data-email>Email us</a>
+  <div class="wrap">
+    <div class="head head-row connect-head reveal">
+      <div>
+        <p class="kicker light"><span class="idx">09</span>Connect</p>
+        <h2 id="connect-title">Interested in building this with us?</h2>
       </div>
-      <figure class="photo connect-photo"><img src="assets/img/owner-meeting.jpg" alt="An owner in conversation across a table" loading="lazy"></figure>
+      <div class="connect-aside">
+        <p class="lede">Thirty minutes. Confidential. No data room, no broker, no pressure.</p>
+        <div class="btns">
+          <a href="#" class="btn btn-blue" data-book>Book a call</a>
+          <a href="#" class="btn btn-outline-light" data-email>Email us</a>
+        </div>
+      </div>
     </div>
-    <form class="form reveal" novalidate>
+    <div class="connect-grid">
+      <figure class="photo connect-photo reveal"><img src="assets/img/owner-meeting.jpg" alt="An owner in conversation across a table" loading="lazy"></figure>
+      <form class="form reveal" novalidate>
       <input type="hidden" name="intent" value="">
       <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <label><span>Name</span><input name="name" autocomplete="name" required></label>
@@ -292,6 +297,7 @@
       <p class="fine">We never contact your team or boards.</p>
       <p class="form-status" role="status" aria-live="polite"></p>
     </form>
+    </div>
   </div>
 </section>
 
@@ -321,6 +327,6 @@
   </div>
 </footer>
 
-<script src="main.js"></script>
+<script src="main.js?v=3"></script>
 </body>
 </html>
