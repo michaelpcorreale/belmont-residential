@@ -42,12 +42,15 @@ p { margin: 0; }
 @media (min-width: 1440px) { .nav > .nav-pill { margin-left: auto; margin-right: auto; } }
 .announce {
   pointer-events: auto; display: flex; align-items: center; justify-content: center; gap: 12px;
-  height: 44px; padding: 0 16px; background: var(--blue); color: #fff; overflow: hidden;
-  font: 500 15px var(--sans); text-align: center; transition: height .35s var(--ease), opacity .35s;
+  min-height: 44px; padding: 10px 16px; background: var(--blue); color: #fff; overflow: hidden;
+  font: 500 15px var(--sans); text-align: center; transition: max-height .35s var(--ease), padding .35s var(--ease), opacity .35s;
 }
-.announce p { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* Never more than two lines: wraps instead of truncating, hard-capped at 2. */
+.announce p { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.35; }
 .announce-icon { width: 20px; height: 20px; flex: none; }
-.nav.compact .announce { height: 0; opacity: 0; }
+.nav.compact .announce { min-height: 0; max-height: 0; padding-top: 0; padding-bottom: 0; opacity: 0; }
+.announce { max-height: 80px; }
+@media (max-width: 560px) { .announce-more { display: none; } }
 .nav.on-light { color: var(--ink); }
 .nav-pill {
   pointer-events: auto; max-width: 1360px; margin: 0 auto; border-radius: 10px;
@@ -351,8 +354,7 @@ h3 { font-size: 21px; line-height: 1.2; letter-spacing: -0.02em; }
 }
 @media (max-width: 860px) {
   .nav > .nav-pill { margin: 12px 16px 0; }
-  .announce { height: auto; min-height: 44px; padding: 10px 16px; font-size: 13px; line-height: 1.35; }
-  .announce p { white-space: normal; }
+  .announce { font-size: 13px; }
   .nav-links, .nav-cta { display: none; }
   .nav-toggle { display: block; }
   .nav-row { height: 60px; padding: 0 20px; }
