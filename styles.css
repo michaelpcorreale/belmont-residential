@@ -142,7 +142,7 @@ h3 { font-size: 21px; line-height: 1.2; letter-spacing: -0.02em; }
           mask-image: radial-gradient(circle 460px at var(--mx, 50%) var(--my, 40%), transparent 0, transparent 35%, #000 100%); }
 .hero.spot-on .hero-spot { opacity: 1; }
 .hero-shade { position: absolute; inset: 0 0 -2px 0; background: linear-gradient(180deg, rgba(10,10,10,.7) 0%, rgba(10,10,10,.4) 30%, rgba(10,10,10,.72) 62%, rgba(10,10,10,.94) 84%, #0a0a0a 100%); }
-.hero-copy { position: relative; z-index: 2; min-height: max(100vh, 820px); min-height: max(100svh, 820px); display: flex; flex-direction: column; justify-content: center; padding-top: 170px; padding-bottom: 170px; }
+.hero-copy { position: relative; z-index: 2; min-height: max(100vh, 820px); min-height: max(100svh, 820px); display: flex; flex-direction: column; justify-content: flex-end; padding-top: 220px; padding-bottom: clamp(96px, 14vh, 150px); }
 .hero-scroll { position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: 12px; letter-spacing: .08em; color: rgba(255,255,255,.55); opacity: 0; animation: fade 1s var(--ease) 1.6s forwards; }
 .hero-scroll::after { content: ""; width: 1px; height: 28px; background: linear-gradient(rgba(255,255,255,.6), transparent); animation: drip 2s ease-in-out infinite; }
 @keyframes drip { 0%, 100% { transform: scaleY(.4); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } }
@@ -541,7 +541,7 @@ h3 { font-size: 21px; line-height: 1.2; letter-spacing: -0.02em; }
   .foot-line { font-size: 19px; }
   .foot-bar { flex-direction: column; align-items: flex-start; margin-top: 56px; }
   .logo { height: 17px; }
-  .hero-copy { min-height: max(100svh, 700px); padding-top: 150px; padding-bottom: 130px; }
+  .hero-copy { min-height: max(100svh, 700px); padding-top: 200px; padding-bottom: 110px; }
   .cards, .terms { grid-template-columns: 1fr; }
   .terms li { padding-left: 0 !important; border-left: 0 !important; border-bottom: 1px solid var(--line); padding-bottom: 20px; }
   .terms li { border-color: var(--line-dark); }
