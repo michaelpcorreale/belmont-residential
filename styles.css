@@ -249,6 +249,26 @@ h3 { font-size: 21px; line-height: 1.2; letter-spacing: -0.02em; }
 .term-k { display: block; font: 500 22px var(--display); letter-spacing: -0.02em; margin-bottom: 12px; }
 .terms p { color: rgba(255,255,255,.62); font-size: 15.5px; }
 
+/* ---------- 5b Process timeline ---------- */
+.timeline { position: relative; }
+.tl-track { position: absolute; left: 10%; right: 10%; top: 28px; height: 2px; background: var(--line); }
+.tl-fill { position: absolute; inset: 0; background: var(--blue); transform: scaleX(0); transform-origin: left; transition: transform 2s var(--ease) .2s; }
+.timeline.in .tl-fill { transform: scaleX(1); }
+.tl-steps { position: relative; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; text-align: center; }
+.tl-step { display: flex; flex-direction: column; align-items: center; }
+.tl-dot { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: #fff; border: 1.5px solid var(--line); color: var(--gray-500); transition: background .5s, border-color .5s, color .5s, box-shadow .5s; }
+.tl-dot svg { width: 24px; height: 24px; }
+.timeline.in .tl-dot { background: #fff; border-color: var(--blue); color: var(--blue); box-shadow: 0 0 0 6px rgba(37,99,255,.08); }
+.timeline.in .tl-step:last-child .tl-dot { background: var(--blue); color: #fff; }
+.timeline.in .tl-step:nth-child(1) .tl-dot { transition-delay: .2s; }
+.timeline.in .tl-step:nth-child(2) .tl-dot { transition-delay: .6s; }
+.timeline.in .tl-step:nth-child(3) .tl-dot { transition-delay: 1s; }
+.timeline.in .tl-step:nth-child(4) .tl-dot { transition-delay: 1.4s; }
+.timeline.in .tl-step:nth-child(5) .tl-dot { transition-delay: 1.8s; }
+.tl-num { margin-top: 22px; font: 500 11px var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--blue); }
+.tl-step h3 { margin-top: 8px; font-size: 20px; }
+.tl-step p { margin-top: 10px; color: var(--gray-600); font-size: 15px; line-height: 1.5; max-width: 24ch; }
+
 /* ---------- 6 Second bite ---------- */
 .bite-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 96px); align-items: center; }
 .bites { margin: 40px 0 0; border-top: 1px solid var(--ink); }
@@ -368,7 +388,7 @@ h3 { font-size: 21px; line-height: 1.2; letter-spacing: -0.02em; }
   .split-bar { height: 104px; }
   .bar-keep { flex-basis: 42%; padding: 0 16px; }
   .bar-sell { padding: 0 16px; }
-  .split-bar.in .bar-sell { transform: translate(10px, 20px); }
+  .split-bar.in .bar-sell { transform: translate(0, 18px); }
 }
 @media (max-width: 560px) {
   body { font-size: 16px; }
@@ -407,6 +427,15 @@ h3 { font-size: 21px; line-height: 1.2; letter-spacing: -0.02em; }
   .chart-bars { height: 280px; gap: 16px; }
   .cbar-label { font-size: 15px; }
   .doors { gap: 48px; }
+  .tl-track { left: 27px; right: auto; top: 28px; bottom: 28px; width: 2px; height: auto; }
+  .tl-fill { transform: scaleY(0); transform-origin: top; }
+  .timeline.in .tl-fill { transform: scaleY(1); }
+  .tl-steps { grid-template-columns: 1fr; gap: 28px; text-align: left; }
+  .tl-step { display: grid; grid-template-columns: 56px 1fr; column-gap: 18px; align-items: start; }
+  .tl-dot { grid-row: span 3; }
+  .tl-num { margin-top: 4px; }
+  .tl-step h3 { margin-top: 4px; }
+  .tl-step p { margin-top: 6px; max-width: none; }
   .perks li { grid-template-columns: 44px 1fr; padding: 18px 0; font-size: 19px; }
   .door-body { padding-top: 18px; gap: 8px; }
   .qa { gap: 10px; }
