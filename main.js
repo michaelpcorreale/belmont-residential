@@ -57,7 +57,7 @@ const io = new IntersectionObserver(entries => {
     if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
   });
 }, { threshold: 0.18, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal, .meet, .timeline, .lock').forEach(el => io.observe(el));
+document.querySelectorAll('.reveal, .meet, .sides, .journey, .timeline, .lock').forEach(el => io.observe(el));
 
 // ---------- Nav ----------
 // Text flips dark over light sections, white over dark ones (marked data-dark).
