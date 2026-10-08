@@ -105,6 +105,7 @@ const form = document.querySelector('.form');
 const intentField = form.querySelector('[name="intent"]');
 const status = form.querySelector('.form-status');
 
+// "Staying in the seat" / "Planning a handoff" cards pre-select the matching option.
 document.querySelectorAll('[data-intent]').forEach(a => {
   a.addEventListener('click', () => { intentField.value = a.dataset.intent; });
 });
@@ -120,14 +121,18 @@ else book.href = mailto('Book a call — Belmont Residential');
 form.addEventListener('submit', async e => {
   e.preventDefault();
   let ok = true;
-  form.querySelectorAll('input[required]').forEach(i => {
-    const bad = !i.value.trim();
+  form.querySelectorAll('[required]').forEach(i => {
+    const bad = !i.value.trim() || (i.type === 'email' && !i.checkValidity());
     i.setAttribute('aria-invalid', bad);
     if (bad) ok = false;
   });
-  if (!ok) { status.textContent = 'Please fill in all three fields.'; return; }
+  if (!ok) { status.textContent = 'Please add your name, firm and a valid email.'; return; }
   const d = new FormData(form);
-  const body = `Name: ${d.get('name')}\nFirm: ${d.get('firm')}\nBest way to reach me: ${d.get('reach')}${d.get('intent') ? `\nInterested in: ${d.get('intent')}` : ''}`;
+  const v = k => (d.get(k) || '').toString().trim();
+  const body = [
+    `Name: ${v('name')}`, `Firm: ${v('firm')}`, `Email: ${v('email')}`,
+    `Phone: ${v('phone') || '—'}`, `Interested in: ${v('intent')}`, `Message: ${v('message') || '—'}`,
+  ].join('\n');
 
   const button = form.querySelector('button[type="submit"]');
   button.disabled = true;
@@ -137,14 +142,17 @@ form.addEventListener('submit', async e => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({
-        _subject: `Belmont call request — ${d.get('firm')}`,
+        _subject: `Belmont inquiry — ${v('firm')} (${v('intent')})`,
         _template: 'table',
         _captcha: 'false',
-        _honey: d.get('_honey') || '',
-        Name: d.get('name'),
-        Firm: d.get('firm'),
-        'Best way to reach': d.get('reach'),
-        'Interested in': d.get('intent') || '—',
+        _replyto: v('email'),
+        _honey: v('_honey'),
+        Name: v('name'),
+        Firm: v('firm'),
+        Email: v('email'),
+        Phone: v('phone') || '—',
+        'Interested in': v('intent'),
+        Message: v('message') || '—',
       }),
     });
     const out = await res.json();
@@ -153,7 +161,7 @@ form.addEventListener('submit', async e => {
     status.textContent = "Thanks — we'll be in touch.";
   } catch {
     // Fall back to a pre-filled email so the request isn't lost.
-    status.innerHTML = `Something went wrong. <a href="${mailto(`Call request — ${d.get('firm')}`, body)}">Send it by email instead</a>.`;
+    status.innerHTML = `Something went wrong. <a href="${mailto(`Belmont inquiry — ${v('firm')}`, body)}">Send it by email instead</a>.`;
   } finally {
     button.disabled = false;
   }

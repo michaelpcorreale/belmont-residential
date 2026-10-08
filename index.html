@@ -32,7 +32,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/video/hero-poster.jpg">
-<link rel="stylesheet" href="styles.css?v=22">
+<link rel="stylesheet" href="styles.css?v=24">
 </head>
 <body>
 
@@ -84,11 +84,9 @@
         <a href="#founding" class="btn btn-outline-light">Become a founding firm</a>
       </div>
     </div>
+    <span class="hero-scroll" aria-hidden="true">Scroll to explore</span>
   </div>
-</section>
-
-<!-- Offer strip, directly under the hero -->
-<section class="steps-band" data-dark aria-label="The offer">
+  <div class="steps-band" aria-label="The offer">
   <div class="wrap">
     <ol class="hero-steps">
       <li><span>01</span><p>Sell <b>60–70%</b> for cash.</p></li>
@@ -96,6 +94,7 @@
       <li><span>03</span><p>Keep running it.</p></li>
       <li><span>04</span><p>Share in the whole.</p></li>
     </ol>
+  </div>
   </div>
 </section>
 
@@ -281,7 +280,7 @@
       <h2 id="doors-title">Every owner has a different next chapter.</h2>
     </div>
     <div class="doors">
-      <a href="#connect" class="door reveal" data-intent="Grow with the group">
+      <a href="#connect" class="door reveal" data-intent="Staying in the seat">
         <div class="door-img"><picture><source type="image/webp" srcset="assets/img/owner-desk-800.webp 800w, assets/img/owner-desk-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 50vw"><img src="assets/img/owner-desk.jpg" alt="Firm owner working at his desk in a sunlit office" width="1800" height="1200" loading="lazy" decoding="async"></picture></div>
         <div class="door-body">
           <h3>Stay in the seat</h3>
@@ -289,7 +288,7 @@
           <span class="door-cta">Grow with the group <span aria-hidden="true">→</span></span>
         </div>
       </a>
-      <a href="#connect" class="door reveal" data-intent="Plan a handoff">
+      <a href="#connect" class="door reveal" data-intent="Planning a handoff">
         <div class="door-img"><picture><source type="image/webp" srcset="assets/img/handoff-room-800.webp 800w, assets/img/handoff-room-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 50vw"><img src="assets/img/handoff-room.jpg" alt="Two colleagues meeting in an office, seen through an open door" width="1800" height="1200" loading="lazy" decoding="async"></picture></div>
         <div class="door-body">
           <h3>Hand it off</h3>
@@ -340,15 +339,29 @@
     <div class="connect-grid">
       <figure class="photo connect-photo reveal"><picture><source type="image/webp" srcset="assets/img/owner-meeting-800.webp 800w, assets/img/owner-meeting-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 50vw"><img src="assets/img/owner-meeting.jpg" alt="Owner smiling across the table during a one-on-one meeting" width="1254" height="836" loading="lazy" decoding="async"></picture></figure>
       <form class="form reveal" novalidate>
-      <input type="hidden" name="intent" value="">
-      <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <label><span>Name</span><input name="name" autocomplete="name" required></label>
-      <label><span>Firm</span><input name="firm" autocomplete="organization" required></label>
-      <label><span>Best way to reach you</span><input name="reach" placeholder="Phone or email" required></label>
-      <button class="btn btn-blue" type="submit">Request a call</button>
-      <p class="fine">We never contact your team or boards.</p>
-      <p class="form-status" role="status" aria-live="polite"></p>
-    </form>
+        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="form-row">
+          <label><span>Name</span><input name="name" autocomplete="name" required></label>
+          <label><span>Firm</span><input name="firm" autocomplete="organization" required></label>
+        </div>
+        <div class="form-row">
+          <label><span>Email</span><input name="email" type="email" autocomplete="email" required></label>
+          <label><span>Phone <em>(optional)</em></span><input name="phone" type="tel" autocomplete="tel"></label>
+        </div>
+        <label><span>I'm interested in</span>
+          <select name="intent">
+            <option>Exploring a partnership</option>
+            <option>Becoming a founding firm</option>
+            <option>Staying in the seat</option>
+            <option>Planning a handoff</option>
+            <option>Something else</option>
+          </select>
+        </label>
+        <label><span>Anything you'd like us to know? <em>(optional)</em></span><textarea name="message" rows="4"></textarea></label>
+        <button class="btn btn-blue" type="submit">Send confidentially <span aria-hidden="true">→</span></button>
+        <p class="fine">Confidential. We never contact your team or boards.</p>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </div>
 </section>
@@ -379,6 +392,6 @@
   </div>
 </footer>
 
-<script src="main.js?v=8"></script>
+<script src="main.js?v=9"></script>
 </body>
 </html>
