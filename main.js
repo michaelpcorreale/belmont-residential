@@ -24,7 +24,7 @@ const io = new IntersectionObserver(entries => {
     if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
   });
 }, { threshold: 0.18, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal, .meet, .timeline').forEach(el => io.observe(el));
+document.querySelectorAll('.reveal, .meet, .timeline, .lock').forEach(el => io.observe(el));
 
 // ---------- Nav ----------
 // Text flips dark over light sections, white over dark ones (marked data-dark).
@@ -67,37 +67,28 @@ toggle.addEventListener('click', () => {
 });
 menu.addEventListener('click', e => { if (e.target.tagName === 'A') closeMenu(); });
 
-// ---------- Smooth, eased scrolling for in-page links ----------
-const easeInOut = t => (t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
-let scrollAnim;
-function glideTo(y) {
-  cancelAnimationFrame(scrollAnim);
-  const start = window.scrollY, dist = y - start;
-  const dur = Math.min(1400, Math.max(600, Math.abs(dist) * 0.35));
-  const t0 = performance.now();
-  const step = now => {
-    const p = Math.min(1, (now - t0) / dur);
-    window.scrollTo(0, start + dist * easeInOut(p));
-    if (p < 1) scrollAnim = requestAnimationFrame(step);
-  };
-  scrollAnim = requestAnimationFrame(step);
+// ---------- Smooth scrolling (Lenis, same settings as bondmsp.com) ----------
+let lenis = null;
+if (window.Lenis && !reduceMotion) {
+  lenis = new Lenis({ duration: 1.15, easing: t => 1 - Math.pow(1 - t, 4) });
+  const raf = time => { lenis.raf(time); requestAnimationFrame(raf); };
+  requestAnimationFrame(raf);
 }
-// Stop the glide if the visitor scrolls themselves.
-['wheel', 'touchstart', 'keydown'].forEach(ev => window.addEventListener(ev, () => cancelAnimationFrame(scrollAnim), { passive: true }));
 
+// In-page links glide to their section and stop just under the menu bar.
 document.addEventListener('click', e => {
   const a = e.target.closest('a[href^="#"]');
-  if (!a || reduceMotion) return;
+  if (!a) return;
   const id = a.getAttribute('href');
   if (id === '#') return;
-  const target = id === '#top' ? document.body : document.querySelector(id);
-  if (!target) return;
+  const target = id === '#top' ? 0 : document.querySelector(id);
+  if (target === null) return;
   e.preventDefault();
-  // Land just under the menu bar as it sits once scrolled (the blue banner collapses on scroll).
   const pill = nav.querySelector('.nav-pill');
-  const offset = id === '#top' ? 0 : pill.offsetHeight + parseFloat(getComputedStyle(pill).marginTop);
-  glideTo(Math.max(0, target.getBoundingClientRect().top + window.scrollY - offset));
-  history.pushState(null, '', id);
+  const offset = target === 0 ? 0 : -(pill.offsetHeight + parseFloat(getComputedStyle(pill).marginTop));
+  if (lenis) lenis.scrollTo(target, { offset });
+  else window.scrollTo({ top: target === 0 ? 0 : target.getBoundingClientRect().top + window.scrollY + offset });
+  history.replaceState(null, '', id);
 });
 
 // ---------- Connect ----------
