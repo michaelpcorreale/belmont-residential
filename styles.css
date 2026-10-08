@@ -237,6 +237,32 @@ h3 { font-size: 21px; line-height: 1.2; letter-spacing: -0.02em; }
 .card h3 { font-size: 19px; line-height: 1.25; margin-bottom: 10px; }
 .card p { color: var(--gray-600); font-size: 15px; line-height: 1.5; }
 
+/* Bento: council feature card + four icon cards */
+.bento { display: grid; grid-template-columns: 1.25fr 1fr 1fr; grid-template-rows: auto auto; gap: 14px; }
+.b-card {
+  display: flex; flex-direction: column; gap: 10px; padding: 28px; border-radius: 18px;
+  background: #fff; border: 1px solid var(--line);
+  transition: border-color .3s, transform .3s var(--ease), box-shadow .3s;
+}
+.b-card:hover { border-color: var(--ink); transform: translateY(-3px); box-shadow: 0 18px 40px -24px rgba(0,0,0,.3); }
+.b-card h3 { font-size: 20px; }
+.b-feature h3 { margin-top: auto; }
+.b-card p { color: var(--gray-600); font-size: 15px; line-height: 1.5; }
+.b-icon { display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: 28px; border-radius: 12px; background: rgba(37,99,255,.08); color: var(--blue); transition: background .3s, color .3s; }
+.b-icon svg { width: 24px; height: 24px; }
+.b-card:hover .b-icon { background: var(--blue); color: #fff; }
+.b-feature { grid-row: span 2; background: var(--black); border-color: var(--black); color: #fff; justify-content: space-between; }
+.b-feature:hover { border-color: var(--blue); }
+.b-feature h3 { font-size: clamp(26px, 2.4vw, 34px); }
+.b-feature p { color: rgba(255,255,255,.66); font-size: 16px; max-width: 34ch; }
+.council-art { width: min(100%, 260px); margin: 8px auto 28px; overflow: visible; }
+.council-art .table { fill: #161616; stroke: rgba(255,255,255,.14); }
+.council-art .ring { fill: none; stroke: rgba(255,255,255,.12); stroke-dasharray: 3 6; }
+.council-art circle:not(.table):not(.ring) { fill: #262626; stroke: rgba(255,255,255,.25); transition: fill .4s; }
+.council-art circle.you:not(.table):not(.ring) { fill: var(--blue); stroke: var(--blue); }
+.b-feature:hover .council-art circle:not(.table):not(.ring):not(.you) { fill: #333; }
+.council-art text { fill: rgba(255,255,255,.75); font: 500 13px var(--sans); text-anchor: middle; }
+
 /* ---------- 5 Model ---------- */
 .split-bar { position: relative; display: flex; height: 120px; margin-bottom: 88px; }
 .bar-keep, .bar-sell { display: flex; flex-direction: column; justify-content: center; padding: 0 28px; gap: 4px; }
@@ -381,6 +407,9 @@ h3 { font-size: 21px; line-height: 1.2; letter-spacing: -0.02em; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1100px) {
+  .bento { grid-template-columns: 1fr 1fr; }
+  .b-feature { grid-row: auto; grid-column: span 2; flex-direction: row; align-items: center; gap: 32px; }
+  .council-art { width: 200px; flex: none; margin: 0; }
   .risks { grid-template-columns: repeat(3, 1fr); }
   .risks li:nth-child(4) { padding-left: 0; border-left: 0; }
   .risks li:nth-child(n+4) { padding-top: 28px; }
@@ -441,6 +470,11 @@ h3 { font-size: 21px; line-height: 1.2; letter-spacing: -0.02em; }
   .chart-bars { height: 280px; gap: 16px; }
   .cbar-label { font-size: 15px; }
   .doors { gap: 48px; }
+  .bento { grid-template-columns: 1fr; gap: 10px; }
+  .b-feature { grid-column: auto; flex-direction: column; align-items: stretch; }
+  .council-art { width: 200px; margin: 0 auto 20px; }
+  .b-card { padding: 22px; }
+  .b-icon { width: 42px; height: 42px; margin-bottom: 16px; }
   .tl-track { left: 27px; right: auto; top: 28px; bottom: 28px; width: 2px; height: auto; }
   .tl-fill { transform: scaleY(0); transform-origin: top; }
   .timeline.in .tl-fill { transform: scaleY(1); }

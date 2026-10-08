@@ -32,7 +32,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/video/hero-poster.jpg">
-<link rel="stylesheet" href="styles.css?v=24">
+<link rel="stylesheet" href="styles.css?v=26">
 </head>
 <body>
 
@@ -173,13 +173,24 @@
     <picture><source type="image/webp" srcset="assets/img/office-team-800.webp 800w, assets/img/office-team-1600.webp 1600w" sizes="100vw"><img src="assets/img/office-team.jpg" alt="Property management owners meeting around a conference table" width="1800" height="1200" loading="lazy" decoding="async"></picture>
   </figure>
   <div class="wrap">
-    <ol class="cards">
-      <li class="card reveal"><span class="card-num">01</span><h3>Owners' council</h3><p>Every owner sits on it. It sets the standards and picks what we build next.</p></li>
-      <li class="card reveal"><span class="card-num">02</span><h3>Cross-coverage</h3><p>A manager out, a storm weekend — another Belmont firm sends help.</p></li>
-      <li class="card reveal"><span class="card-num">03</span><h3>Referrals stay in the group</h3><p>A community that isn't your fit goes to the firm that is.</p></li>
-      <li class="card reveal"><span class="card-num">04</span><h3>One playbook</h3><p>Best practices written once, shared by all.</p></li>
-      <li class="card reveal"><span class="card-num">05</span><h3>People who get it</h3><p>Monthly owner calls. Peers with your problems, one call away.</p></li>
-    </ol>
+    <div class="bento">
+      <article class="b-card b-feature reveal">
+        <svg class="council-art" viewBox="0 0 240 240" aria-hidden="true">
+          <circle class="table" cx="120" cy="120" r="58"/>
+          <circle class="ring" cx="120" cy="120" r="86"/>
+          <circle cx="120.0" cy="34.0" r="13"/><circle cx="180.8" cy="59.2" r="13"/><circle class="you" cx="206.0" cy="120.0" r="13"/><circle cx="180.8" cy="180.8" r="13"/><circle cx="120.0" cy="206.0" r="13"/><circle cx="59.2" cy="180.8" r="13"/><circle cx="34.0" cy="120.0" r="13"/><circle cx="59.2" cy="59.2" r="13"/>
+          <text x="120" y="116">Owners'</text><text x="120" y="134">council</text>
+        </svg>
+        <div>
+          <h3>Owners' council</h3>
+          <p>Every owner sits on it. It sets the standards and picks what we build next.</p>
+        </div>
+      </article>
+      <article class="b-card reveal"><span class="b-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20ZM12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M14.83 9.17l4.24-4.24M4.93 19.07l4.24-4.24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>Cross-coverage</h3><p>A manager out, a storm weekend — another Belmont firm sends help.</p></article>
+      <article class="b-card reveal"><span class="b-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 1l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>Referrals stay in the group</h3><p>A community that isn't your fit goes to the firm that is.</p></article>
+      <article class="b-card reveal"><span class="b-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15ZM9 7h7M9 11h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>One playbook</h3><p>Best practices written once, shared by all.</p></article>
+      <article class="b-card reveal"><span class="b-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>People who get it</h3><p>Monthly owner calls. Peers with your problems, one call away.</p></article>
+    </div>
   </div>
 </section>
 
