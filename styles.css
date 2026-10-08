@@ -37,7 +37,9 @@ p { margin: 0; }
 .blue { color: var(--blue); }
 
 /* Photos: monochrome everywhere; blue is the only colour. */
-.photo img, .banner img, .door-img img, .foot-hero img { filter: grayscale(1) contrast(1.05); }
+/* One shared colour grade for every photo and the hero video: muted, slightly warm, a touch of contrast. */
+:root { --grade: saturate(.82) contrast(1.05) sepia(.08); }
+.photo img, .banner img, .door-img img, .foot-hero img { filter: var(--grade); }
 
 /* ---------- Nav (after hyperbuilt.com) ---------- */
 .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; pointer-events: none; color: #fff; transition: color .3s; }
@@ -135,7 +137,7 @@ h3 { font-size: 21px; line-height: 1.2; letter-spacing: -0.02em; }
 /* ---------- 1 Hero ---------- */
 .hero { position: relative; display: flex; flex-direction: column; color: #fff; background: var(--black); overflow: hidden; }
 .hero-media { position: absolute; inset: 0; transform: scale(1.06); }
-.hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; filter: brightness(.82) saturate(.9); }
+.hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; filter: var(--grade) brightness(.84); }
 /* Cursor spotlight: a dimming layer with a soft clear circle at the cursor (no blend modes — they break video in Chrome) */
 .hero-spot { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .6s; background: rgba(10,10,10,.45);
   -webkit-mask-image: radial-gradient(circle 460px at var(--mx, 50%) var(--my, 40%), transparent 0, transparent 35%, #000 100%);
