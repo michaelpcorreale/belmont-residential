@@ -31,8 +31,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/video/hero-poster.jpg">
-<link rel="stylesheet" href="styles.css?v=43">
+<link rel="preload" as="image" href="assets/video/hero-city-poster.jpg" media="(min-width: 761px), (orientation: landscape)">
+<link rel="preload" as="image" href="assets/video/hero-city-poster-mobile.jpg" media="(max-width: 760px) and (orientation: portrait)">
+<link rel="stylesheet" href="styles.css?v=44">
 </head>
 <body>
 
@@ -70,9 +71,17 @@
 <!-- 1 — Hero -->
 <section class="hero" id="hero" data-dark aria-labelledby="hero-title">
   <div class="hero-media" aria-hidden="true">
-    <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/video/hero-poster.jpg" aria-hidden="true">
-      <source src="assets/video/hero.mp4" type="video/mp4">
-    </video>
+    <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true"
+      data-desktop="assets/video/hero-city.mp4" data-desktop-poster="assets/video/hero-city-poster.jpg"
+      data-mobile="assets/video/hero-city-mobile.mp4" data-mobile-poster="assets/video/hero-city-poster-mobile.jpg"></video>
+    <script>
+      // Phones get a vertical cut framed for portrait screens (and a third of the download).
+      (function (v) {
+        var m = window.matchMedia('(max-width: 760px) and (orientation: portrait)').matches;
+        v.poster = v.dataset[m ? 'mobilePoster' : 'desktopPoster'];
+        v.src = v.dataset[m ? 'mobile' : 'desktop'];
+      })(document.currentScript.previousElementSibling);
+    </script>
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="hero-spot" aria-hidden="true"></div>
