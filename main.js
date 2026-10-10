@@ -19,32 +19,27 @@ if (video) {
 }
 
 // ---------- Interactive hero ----------
-// Mouse: the footage drifts against the cursor and a soft spotlight follows it.
-// Scroll: the footage moves slower than the page and eases in scale (parallax).
+// The footage drifts gently against the cursor and moves slower than the page on scroll (parallax).
 // Transforms go on the .hero-media wrapper, never on the <video> itself.
 const heroEl = document.getElementById('hero');
 const media = document.querySelector('.hero-media');
 if (heroEl && media && !reduceMotion) {
-  let tx = 0, ty = 0, cx = 0, cy = 0, sx = 0, sy = 0, mx = 0, my = 0, inView = true;
+  let tx = 0, ty = 0, cx = 0, cy = 0, inView = true;
   if (window.matchMedia('(pointer: fine)').matches) {
     heroEl.addEventListener('pointermove', e => {
       const r = heroEl.getBoundingClientRect();
-      mx = e.clientX - r.left; my = e.clientY - r.top;
-      tx = (mx / r.width - .5) * -28; ty = (my / r.height - .5) * -18;
-      if (!heroEl.classList.contains('spot-on')) { sx = mx; sy = my; heroEl.classList.add('spot-on'); }
+      tx = ((e.clientX - r.left) / r.width - .5) * -28;
+      ty = ((e.clientY - r.top) / r.height - .5) * -18;
     });
-    heroEl.addEventListener('pointerleave', () => { tx = 0; ty = 0; heroEl.classList.remove('spot-on'); });
+    heroEl.addEventListener('pointerleave', () => { tx = 0; ty = 0; });
   }
   new IntersectionObserver(([e]) => { inView = e.isIntersecting; }).observe(heroEl);
   const tick = () => {
     if (inView) {
       cx += (tx - cx) * .06; cy += (ty - cy) * .06;
-      sx += (mx - sx) * .14; sy += (my - sy) * .14;
       const s = Math.min(window.scrollY, heroEl.offsetHeight);
       const scale = 1.06 + (s / heroEl.offsetHeight) * .08;
       media.style.transform = `translate3d(${cx.toFixed(2)}px, ${(cy + s * .3).toFixed(2)}px, 0) scale(${scale.toFixed(4)})`;
-      heroEl.style.setProperty('--mx', `${sx.toFixed(1)}px`);
-      heroEl.style.setProperty('--my', `${sy.toFixed(1)}px`);
     }
     requestAnimationFrame(tick);
   };
